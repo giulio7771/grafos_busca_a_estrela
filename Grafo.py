@@ -17,7 +17,7 @@ class Grafo:
     caminhos.append(caminho)
     while(True):
       caminhoEscolhido = self.caminhoMenorFn(caminhos)
-      (chegada, novosCaminhos) = self.expandir(caminho)
+      (chegada, novosCaminhos) = self.expandir(caminhoEscolhido)
       if (chegada):
         return novosCaminhos
       caminhos = self.agruparCaminhos(caminhos, novosCaminhos)
@@ -46,6 +46,8 @@ class Grafo:
     ultimoVertice = caminho.obterUltimoVertice()
     arrestas = ultimoVertice.obterArrestas()
     caminhos = []
+    print("-----Expandindo {} vertices------".format(len(arrestas)))
+    print("Patindo do vertice {} ".format(ultimoVertice.obterNome()))
     for arresta in arrestas:
       caminhoNovo = Caminho.Caminho()
       caminhoNovo.copiarDe(caminho)

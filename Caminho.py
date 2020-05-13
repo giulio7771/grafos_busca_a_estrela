@@ -37,6 +37,6 @@ class Caminho:
   def printCaminho(self):
     print("Caminho encontrado com custo: {}".format(self.custoAcumulado))
     for vertice in self.historico:
-      print("  vertice {}".format(vertice.obterNome))
+      print("  vertice {}".format(vertice.obterNome()))
 
 
