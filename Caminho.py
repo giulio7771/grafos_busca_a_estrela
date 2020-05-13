@@ -6,5 +6,31 @@ class Caminho:
   def addVertice(self, vertice):
     self.historico.append(vertice)
 
-  def adicionaCusto(self, custo):
+  def addCusto(self, custo):
     self.custoAcumulado += custo
+  
+  def calculaFn(self):
+    ultimoVertice = self.obterUltimoVertice()
+    hn = ultimoVertice.obterDistancia()
+    fn = self.custoAcumulado + hn
+    return fn
+  
+  def setHistorico(self, historico):
+    self.historico = historico
+
+  def obterUltimoVertice(self):
+    return self.historico[len(self.historico) - 1]
+
+  def copiarHistorico(self):
+    historico = []
+    for i in self.historico:
+      historico.append(i)
+    return historico
+  
+  def obterCustoAcumulado(self):
+    return self.custoAcumulado
+  
+  def copiarDe(self, caminho):
+    self.historico = caminho.copiarHistorico()
+    self.custoAcumulado = caminho.obterCustoAcumulado()
+
