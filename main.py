@@ -26,7 +26,8 @@ def app():
     vertice = grafo.obterVerticePorNome(values[0])
     vertice.setDistancia(values[1])
 
-  grafo.printGrafo()
+  caminho = grafo.aEstrela()
+  caminho.printCaminho()
 
 def readFile(path):
   file = open(path, 'r')

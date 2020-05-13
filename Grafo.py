@@ -16,16 +16,31 @@ class Grafo:
     caminho.addVertice(verticeAtual)
     caminhos.append(caminho)
     while(True):
-      self.expandir(caminho)
-      verticesExpandidos = self.expandir(verticeAtual, custo)
-  
-  def expandir2(self, verticeAtual, custo):
-    arrestas = verticeAtual.obterArrestas()
-    for arresta in arrestas:
-      gn = arresta.obterCusto()
-      hn = arresta.obterVerticeDestino().obterDistancia()
-      fn = gn + hn
-    return True
+      caminhoEscolhido = self.caminhoMenorFn(caminhos)
+      (chegada, novosCaminhos) = self.expandir(caminho)
+      if (chegada):
+        return novosCaminhos
+      caminhos = self.agruparCaminhos(caminhos, novosCaminhos)
+
+  def agruparCaminhos(self, caminhos1, caminhos2):
+    for caminho in caminhos2:
+      caminhos1.append(caminho)
+    return caminhos1
+
+  def caminhoMenorFn(self, caminhos):
+    melhorCaminho = None
+    melhorFn = None
+    #idx = 0
+    #i = 0
+    for caminho in caminhos:
+      fn = caminho.calculaFn()
+      if (melhorFn == None or fn < melhorFn):
+        melhorFn = fn
+        melhorCaminho = caminho
+        #idx = i
+      #i += 1
+    caminhos.remove(melhorCaminho)
+    return melhorCaminho
   
   def expandir(self, caminho):
     ultimoVertice = caminho.obterUltimoVertice()
@@ -39,7 +54,9 @@ class Grafo:
       caminhoNovo.addCusto(arresta.obterCusto())
       caminhos.append(caminhoNovo)
       print("Expansão vertice: {} | fn: {}".format(verticeDestino.nome, caminhoNovo.calculaFn()))
-    return caminhos
+      if (verticeDestino.obterNome() == self.verticeDestinoNome):
+        return [True, caminhoNovo]
+    return [False, caminhos]
 
 
   def addVertice(self, vertice):

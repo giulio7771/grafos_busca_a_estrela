@@ -33,4 +33,10 @@ class Caminho:
   def copiarDe(self, caminho):
     self.historico = caminho.copiarHistorico()
     self.custoAcumulado = caminho.obterCustoAcumulado()
+  
+  def printCaminho(self):
+    print("Caminho encontrado com custo: {}".format(self.custoAcumulado))
+    for vertice in self.historico:
+      print("  vertice {}".format(vertice.obterNome))
+
 

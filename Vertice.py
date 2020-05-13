@@ -4,6 +4,9 @@ class Vertice:
     self.nome = nome
     self.distancia = distancia
     self.arrestas = []
+  
+  def obterNome(self):
+    return self.obterNome
 
   def obterDistancia(self):
     return self.distancia
