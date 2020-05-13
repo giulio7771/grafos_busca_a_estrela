@@ -1,4 +1,5 @@
 import Vertice
+import Caminho
 
 class Grafo:
   def __init__(self, verticeOrigemNome, verticeDestinoNome):
@@ -8,8 +9,20 @@ class Grafo:
   
   def aEstrela(self):
     verticeAtual = self.obterVerticePorNome(self.verticeOrigemNome)
-    print("Vertice Expandido: {}".format(verticeAtual.nome))
+    verticeDestino = self.obterVerticePorNome(self.verticeDestinoNome)
+    caminhos = []
+    custo = 0
+    while(verticeAtual.nome != verticeDestino.nome):
+      verticesExpandidos = self.expandir(verticeAtual, custo)
+  
+  def expandir(self, verticeAtual, custo):
+    arrestas = verticeAtual.obterArrestas()
+    for arresta in arrestas:
+      gn = arresta.obterCusto()
+      hn = arresta.obterVerticeDestino().obterDistancia()
+      fn = gn + hn
     return True
+
 
   def addVertice(self, vertice):
     self.vertices.append(vertice)

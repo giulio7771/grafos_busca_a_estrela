@@ -4,12 +4,18 @@ class Vertice:
     self.nome = nome
     self.distancia = distancia
     self.arrestas = []
+
+  def obterDistancia(self):
+    return self.distancia
   
   def setDistancia(self, distancia):
     self.distancia = distancia
   
   def addArresta(self, arresta):
     self.arrestas.append(arresta)
+  
+  def obterArrestas(self):
+    return self.arrestas
   
   def printVertice(self):
     for i in self.arrestas:
