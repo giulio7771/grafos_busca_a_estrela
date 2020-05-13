@@ -15,7 +15,7 @@ def app():
     else:
       verticeOrigem = grafo.obterVerticePorNome(values[0])
       verticeDestino = grafo.obterVerticePorNome(values[1])
-      arresta = Arresta.Arresta(verticeOrigem, verticeDestino, values[2])
+      arresta = Arresta.Arresta(verticeOrigem, verticeDestino, int(values[2]))
       verticeOrigem.addArresta(arresta)
       #arrestaInversa = Arresta.Arresta(verticeDestino, verticeOrigem, values[2])
       #verticeDestino.addArresta(arrestaInversa)
@@ -24,7 +24,7 @@ def app():
   for i in distancias_linhas:
     values = i.split(" ")
     vertice = grafo.obterVerticePorNome(values[0])
-    vertice.setDistancia(values[1])
+    vertice.setDistancia(int(values[1]))
 
   caminho = grafo.aEstrela()
   caminho.printCaminho()
